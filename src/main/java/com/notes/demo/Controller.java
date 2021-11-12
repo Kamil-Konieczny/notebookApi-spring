@@ -5,14 +5,13 @@ import com.notes.demo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.xml.crypto.Data;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200/")
-public class UserController {
+public class Controller {
     @Autowired
     UserService userService;
 
@@ -66,8 +65,16 @@ public class UserController {
     }
 
     @PostMapping("/user")
-    public User addUser(@RequestBody User user)
+    public User addUser(@RequestParam("nickname")String nickname)
     {
+        System.out.println(nickname);
+    User user = new User(nickname,new ArrayList<>());
     return userService.saveUser(user);
+    }
+
+    @GetMapping("/note/{title}")
+    public Optional<Note> getNoteByTitle(@PathVariable String title)
+    {
+        return notesService.getNoteByTitle(title);
     }
 }

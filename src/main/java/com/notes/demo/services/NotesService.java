@@ -25,4 +25,9 @@ NotesRepository notesRepository;
     {
         return notesRepository.findById(noteId);
     }
+
+    public Optional<Note> getNoteByTitle(String title)
+    {
+      return  notesRepository.findNoteByTitle(title);
+    }
 }

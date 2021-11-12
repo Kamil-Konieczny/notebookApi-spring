@@ -7,9 +7,14 @@ import java.util.List;
 @Entity
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long user_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+     Long user_id;
     String nickname;
+
+    public User(String nickname, List<Note> notes) {
+        this.nickname = nickname;
+        this.notes = notes;
+    }
 
     public User(String nickname) {
         this.nickname = nickname;
